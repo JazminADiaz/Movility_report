@@ -1,0 +1,2 @@
+atom
+-DCATKIN_DEVEL_PREFIX=/home/jazmin/MultiRobots/devel -DCMAKE_INSTALL_PREFIX=/home/jazmin/MultiRobots/install -G Unix Makefiles
