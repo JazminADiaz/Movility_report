@@ -2,6 +2,7 @@
 <launch>
     <arg name="robot_name"/>
     <arg name="init_pose"/>
+    <arg name="n1_2" />
     
   <param name="robot_description" 
     command="$(find xacro)/xacro --inorder '$(find atom)/urdf/atom.xacro' " />
