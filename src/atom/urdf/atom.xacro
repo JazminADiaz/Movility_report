@@ -256,8 +256,9 @@
 		<maxVel>1.0</maxVel>
 		<minDepth>0.00</minDepth>
 	</gazebo>
+	
 	<gazebo reference="chassis">
-		<material>Gazebo/Red</material>
+		<material>Gazebo/Green</material>
 	</gazebo>
 
 
@@ -267,7 +268,7 @@
 	    <plugin name="skid_steer_drive_controller" filename="libgazebo_ros_skid_steer_drive.so">
 	      <updateRate>10.0</updateRate>
 	      
-	      <robotNamespace>/1</robotNamespace>
+	      <robotNamespace>/</robotNamespace>
 	      <leftFrontJoint>left_wheel_hinge_front</leftFrontJoint>
 	      <rightFrontJoint>right_wheel_hinge_front</rightFrontJoint>
 	      <leftRearJoint>left_wheel_hinge_back</leftRearJoint>
