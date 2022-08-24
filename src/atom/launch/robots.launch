@@ -4,7 +4,6 @@
        Access with slash at the beginning -->
 
 
-
   <!-- BEGIN ROBOT 1-->
   <arg name="n1"  value="robot1" />
   <group ns="$(arg n1)">

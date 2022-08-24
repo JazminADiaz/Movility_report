@@ -13,7 +13,6 @@
 	<xacro:property name="robot_wheel_radius" value="0.1"/>
 
 
-
 	<!-- Make Chassis of Bot -->
 	<link name="chassis">
 		<pose>0 0 0.1 0 0 0</pose>
@@ -162,11 +161,8 @@
 	</link>
 
 
-
-
 	<!-- Project center to the ground -->
 	<link name="robot_footprint"></link>
-
 
 
 	<!-- Define Joints -->
@@ -214,7 +210,6 @@
 
 
 
-
 	<joint name="robot_footprint_joint" type="fixed">
 		<origin xyz="0 0 0" rpy="0 0 0" />
 		<parent link="robot_footprint"/>
@@ -224,7 +219,7 @@
 
 	<!-- Color of bot -->
 	<gazebo reference="left_wheel_front">
-		<material>Gazebo/Green</material>
+		<material>Gazebo/Black</material>
 		<kp>1000000.0</kp> <!-- kp and kd for rubber -->
 		<kd>100.0</kd>
 		<mu1>1.0</mu1>
@@ -234,7 +229,7 @@
 	</gazebo>
 
 	<gazebo reference="left_wheel_back">
-		<material>Gazebo/Green</material>
+		<material>Gazebo/Black</material>
 		<kp>1000000.0</kp> <!-- kp and kd for rubber -->
 		<kd>100.0</kd>
 		<mu1>1.0</mu1>
@@ -244,7 +239,7 @@
 	</gazebo>
 
 	<gazebo reference="right_wheel_front">
-		<material>Gazebo/Green</material>
+		<material>Gazebo/Black</material>
 		<kp>1000000.0</kp> <!-- kp and kd for rubber -->
 		<kd>100.0</kd>
 		<mu1>1.0</mu1>
@@ -253,7 +248,7 @@
 		<minDepth>0.00</minDepth>
 	</gazebo>
 	<gazebo reference="right_wheel_back">
-		<material>Gazebo/Green</material>
+		<material>Gazebo/Black</material>
 		<kp>1000000.0</kp> <!-- kp and kd for rubber -->
 		<kd>100.0</kd>
 		<mu1>1.0</mu1>
@@ -261,46 +256,34 @@
 		<maxVel>1.0</maxVel>
 		<minDepth>0.00</minDepth>
 	</gazebo>
-	<!--<gazebo reference="right_wheel">
-		<material>Gazebo/Green</material>
-	</gazebo>-->
-
-
 	<gazebo reference="chassis">
-                        <!-- CAMBIOS AGERGADOS -->
-
-                <material>Gazebo/Blue</material>
-
+		<material>Gazebo/Red</material>
 	</gazebo>
 
+
   <gazebo>
+
     
-    <plugin name="skid_steer_drive_controller" filename="libgazebo_ros_skid_steer_drive.so">
-      <updateRate>10.0</updateRate>
-      <robotNamespace>/1</robotNamespace>
-      <leftFrontJoint>left_wheel_hinge_front</leftFrontJoint>
-      <rightFrontJoint>right_wheel_hinge_front</rightFrontJoint>
-      <leftRearJoint>left_wheel_hinge_back</leftRearJoint>
-      <rightRearJoint>right_wheel_hinge_back</rightRearJoint>
-      <wheelSeparation>0.4</wheelSeparation>
-      <wheelDiameter>0.2</wheelDiameter>
-      <robotBaseFrame>robot_footprint</robotBaseFrame>
-      <torque>10</torque>
+	    <plugin name="skid_steer_drive_controller" filename="libgazebo_ros_skid_steer_drive.so">
+	      <updateRate>10.0</updateRate>
+	      
+	      <robotNamespace>/</robotNamespace>
+	      <leftFrontJoint>left_wheel_hinge_front</leftFrontJoint>
+	      <rightFrontJoint>right_wheel_hinge_front</rightFrontJoint>
+	      <leftRearJoint>left_wheel_hinge_back</leftRearJoint>
+	      <rightRearJoint>right_wheel_hinge_back</rightRearJoint>
+	      <wheelSeparation>0.4</wheelSeparation>
+	      <wheelDiameter>0.2</wheelDiameter>
+	      <robotBaseFrame>robot_footprint</robotBaseFrame>
+	      <torque>10</torque>
 
-      <topicName>cmd_vel</topicName>
+	      <topicName>cmd_vel</topicName>
+	      
+
+	      <broadcastTF>False</broadcastTF>
 
 
-      <broadcastTF>False</broadcastTF>
-
-
-
-    </plugin>
+	    </plugin>
 
   </gazebo>
-
-
 </robot>
-
-
-
-
