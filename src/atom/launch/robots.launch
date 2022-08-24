@@ -3,20 +3,60 @@
   <!-- No namespace here as we will share this description. 
        Access with slash at the beginning -->
 
-  <param name="robot_description"     command="$(find xacro)/xacro '$(find atom)/urdf/atom.xacro'" />
+
+
+  <!-- BEGIN ROBOT 1 -->
+<group ns="/robot1">
+  <param name="tf_prefix" value="atlas1" />
+
+   <rosparam file="$(find atom)/config/control.yaml" command="load" ns="/robot1" /> 
+   
+<arg name="urdf_file" default="$(find xacro)/xacro '$(find atom)/urdf/atom.xacro' --inorder" />
+  <param name="robot_description" command="$(arg urdf_file)" />
+      
+<include file="$(find atom)/launch/one_robot.launch" >
+      <arg name="init_pose" value="-x -27.65 -y 39.1977 -z 0 -R 0 -P 0 -Y -1.20" />
+      <arg name="robot_name"  value="Robot1" />
+      <arg name="n2" value="rob1" />
+</include>
+   
+
+  </group>
   
-  <!-- BEGIN ROBOT 1-->
+    <!-- BEGIN ROBOT 2 -->
+  <group ns="/robot2">
+  <param name="tf_prefix" value="atlas2" />
+
+   <rosparam file="$(find atom)/config/control.yaml" command="load" ns="/robot2" /> 
+   
+<arg name="urdf_file" default="$(find xacro)/xacro '$(find atom)/urdf/atom.xacro' --inorder" />
+  <param name="robot_description" command="$(arg urdf_file)" />
+      
+<include file="$(find atom)/launch/one_robot.launch" >
+      <arg name="init_pose" value="-x -16.83 -y -38.03 -z 0 -R 0 -P 0 -Y 1.95" />
+      <arg name="robot_name"  value="Robot2" />
+      <arg name="n2" value="rob2" />
+</include>
+    </group> 
+  <!-- BEGIN ROBOT 1
+  
   <arg name="n1"  value="robot1" />
+  
+  <arg name="urdf_file" default="$(find xacro)/xacro '$(find atom)/urdf/atom.xacro' prefix:=$(arg n1) " />
+  <param name="robot_description" command="$(arg urdf_file)" />
+  
   <group ns="$(arg n1)">
     <param name="tf_prefix" value="robot1_tf" />
+    
     <include file="$(find atom)/launch/one_robot.launch" >
       <arg name="init_pose" value="-x -27.65 -y 39.1977 -z 0 -R 0 -P 0 -Y -1.20" />
       <arg name="robot_name"  value="Robot1" />
       <arg name="n2" value="$(arg n1)" />
     </include>
-  </group>
+  </group> 
+  
 
-  <!-- BEGIN ROBOT 2
+   BEGIN ROBOT 2
   <group ns="robot2">
     <param name="tf_prefix" value="robot2_tf" />
     <include file="$(find atom)/launch/one_robot.launch" >
@@ -24,4 +64,6 @@
       <arg name="robot_name"  value="Robot2" />
     </include>
   </group> -->
+  
+  
 </launch>
