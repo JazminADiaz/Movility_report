@@ -259,11 +259,11 @@
 	
 	<gazebo reference="chassis">
 		<material>Gazebo/Red</material>
-		<!--          
+		<!--
   	<material>
             <script>
               <uri>/home/jazmin/MultiRobots/src/atom/materials/scripts</uri>
-              <uri>/home/jazmin/MultiRobots/src/atom/materials/textures</uri>
+              <uri>/home/jazmin/MultiRobots/src/atom/materials/textures/</uri>
               <name>R1/Diffuse</name>
             </script>
           </material>

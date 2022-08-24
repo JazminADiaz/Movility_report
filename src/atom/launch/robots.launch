@@ -38,6 +38,10 @@
       <arg name="n2" value="rob2" />
 </include>
     </group> 
+    
+    
+    
+    
   <!-- BEGIN ROBOT 1
   
   <arg name="n1"  value="robot1" />
