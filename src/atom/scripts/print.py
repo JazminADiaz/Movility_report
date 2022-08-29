@@ -1,17 +1,18 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3.8
 import rospy
 from gazebo_msgs.msg import ModelStates
 from geometry_msgs.msg import Twist
 
 def callback(data):
     for a in  range(len(data.name)):
-      if data.name[a]== 'Robot1':
+      if data.name[a]== 'Robot2':
         vel.linear.x= 0.1
         vel.angular.z=0.0
 
         pub.publish(vel)
         rate.sleep()
-  #      rospy.loginfo(data.name[a])  
+        #rospy.loginfo(data.pose[a])
+        rospy.loginfo(data.name[a])  
 
 
 
@@ -30,12 +31,12 @@ def callback(data):
 rospy.init_node('MoveRobots', anonymous=True)
 
 rospy.Subscriber('/gazebo/model_states', ModelStates, callback)
-pub = rospy.Publisher('/robot1/cmd_vel', Twist, queue_size=10)
+pub = rospy.Publisher('/robot2/cmd_vel', Twist, queue_size=10)
+#pub1= rospy.Publisher('/gazebo/set_model_state', ModelStates, queue_size=10)
 # spin() simply keeps python from exiting until this node is stopped
 
 rate= rospy.Rate(10)
 vel = Twist()
 
 rospy.spin()
-
 
