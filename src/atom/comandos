@@ -1,0 +1,27 @@
+teclado: rosrun teleop_twist_keyboard teleop_twist_keyboard.py
+check subs and pubs rostopic list -v
+rosbag: rosbag record -a
+
+ir al bash: gedit ~/.bashrc
+
+string[] name
+geometry_msgs/Pose[] pose
+  geometry_msgs/Point position
+    float64 x
+    float64 y
+    float64 z
+  geometry_msgs/Quaternion orientation
+    float64 x
+    float64 y
+    float64 z
+    float64 w
+geometry_msgs/Twist[] twist
+  geometry_msgs/Vector3 linear
+    float64 x
+    float64 y
+    float64 z
+  geometry_msgs/Vector3 angular
+    float64 x
+    float64 y
+    float64 z
+

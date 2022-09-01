@@ -11,7 +11,7 @@
 	<xacro:property name="robot_wheel_mass" value="5"/>
 	<xacro:property name="robot_wheel_length" value="0.05"/>
 	<xacro:property name="robot_wheel_radius" value="0.1"/>
-
+	<xacro:property name="hokoyu_mass" value="1e-5"/>
 
 	<!-- Make Chassis of Bot -->
 	<link name="chassis">
@@ -160,6 +160,35 @@
 
 	</link>
 
+	<!-- Hokuyo Lidar -->
+	<link name="hokuyo">
+		<inertial>
+			<mass value="${hokoyu_mass}"/>
+			<origin xyz="0 0 0" rpy="0 0 0"/>
+
+			<inertia
+		        ixx="1e-6" ixy="0.0" ixz="0.0"
+		        iyy="1e-6" iyz="0.0"
+		        izz="1e-6"
+		      />
+		</inertial>
+
+		<visual>
+			<origin xyz="0 0 0" rpy="0 0 0"/>
+			<geometry>
+				<mesh filename="/home/jazmin/MultiRobots/src/atom/urdf/hokuyo.dae"/>
+			</geometry>
+		</visual>
+
+		<collision>
+			<origin xyz="0 0 0" rpy="0 0 0"/>
+			<geometry>
+				<box size="0.1 0.1 0.1"/>
+			</geometry>
+		</collision>
+	</link>
+
+
 
 	<!-- Project center to the ground -->
 	<link name="robot_footprint"></link>
@@ -215,6 +244,16 @@
 		<parent link="robot_footprint"/>
 		<child link="chassis" />
 	</joint>
+
+	<!-- Hokoyu Joint -->
+	<joint name="hokuyo_joint" type="fixed">
+	    <origin xyz="0.2 0 0.2" rpy="0 0 0" />
+	    <parent link="chassis"/>
+	    <child link="hokuyo" />  
+	    <axis xyz="0 1 0"/> 
+	</joint>
+
+
 
 
 	<!-- Color of bot -->
@@ -272,28 +311,10 @@
 
 
 
-  <gazebo>
+	<!-- Motor, Camera and Lidar Simulation -->
+<xacro:include filename="$(find atom)/urdf/atom.gazebo" />
+  
 
-    
-	    <plugin name="skid_steer_drive_controller" filename="libgazebo_ros_skid_steer_drive.so">
-	      <updateRate>10.0</updateRate>
-	      
-
-	      <leftFrontJoint>left_wheel_hinge_front</leftFrontJoint>
-	      <rightFrontJoint>right_wheel_hinge_front</rightFrontJoint>
-	      <leftRearJoint>left_wheel_hinge_back</leftRearJoint>
-	      <rightRearJoint>right_wheel_hinge_back</rightRearJoint>
-	      <wheelSeparation>0.4</wheelSeparation>
-	      <wheelDiameter>0.2</wheelDiameter>
-	      <robotBaseFrame>robot_footprint</robotBaseFrame>
-	      <torque>10</torque>
-	      <topicName>cmd_vel</topicName>
-	      <broadcastTF>False</broadcastTF>
-
-
-	    </plugin>
-
-  </gazebo>
 
 
 
