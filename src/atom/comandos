@@ -1,6 +1,7 @@
-teclado: rosrun teleop_twist_keyboard teleop_twist_keyboard.py
+teclado: rosrun teleop_twist_keyboard teleop_twist_keyboard.py /cmd_vel:=/robot1/cmd_vel
 check subs and pubs rostopic list -v
 rosbag: rosbag record -a
+rosbag record -O subset4  /robot1_Vel /robot1_Pos /robot1_name
 
 ir al bash: gedit ~/.bashrc
 
