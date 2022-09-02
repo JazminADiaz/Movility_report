@@ -8,14 +8,14 @@ import matplotlib.pyplot as plt
 import numpy as np
 import os
 
-bagname='2022-09-02-11-57-41'
+bagname='trial'
 robot='robot1'
 
 b = bagreader(f'/home/jazmin/bagfiles/{bagname}.bag') 
 print(b.topic_table)
 
 
-data_name=b.message_by_topic(f'/{robot}_name')
+data_name=b.message_by_topic(f'/{robot}_Name')
 print("File saved: {}".format(data_name))
 
 
@@ -35,7 +35,7 @@ print("File saved: {}".format(data_all))
 '''
 path = f'/home/jazmin/bagfiles/{bagname}'
 
-data1 = pd.read_csv(f'{path}/{robot}_name.csv')
+data1 = pd.read_csv(f'{path}/{robot}_Name.csv')
 data1=data1.rename(columns = {'data':'Name'})
 data1=data1.drop_duplicates(subset='Time', keep="first")
 # df = data1.drop_duplicates(subset='Time', keep="first")

@@ -12,7 +12,7 @@ robot='robot1'
 rate= rospy.Rate(1000)
 
 pub = rospy.Publisher('/gazebo/model_states', ModelStates, queue_size=30)
-pub1 = rospy.Publisher(f'/{robot}_name', String, queue_size=35)
+pub1 = rospy.Publisher(f'/{robot}_Name', String, queue_size=35)
 pub2 = rospy.Publisher(f'/{robot}_Pos', Pose, queue_size=30)
 pub3 = rospy.Publisher(f'/{robot}_Vel', Twist, queue_size=25)
 
