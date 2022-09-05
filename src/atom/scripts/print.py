@@ -9,12 +9,12 @@ from std_msgs.msg import String
 rospy.init_node('MoveRobots', anonymous=True)
 robot='robot1'
 
-rate= rospy.Rate(1000)
+rate= rospy.Rate(50)
 
-pub = rospy.Publisher('/gazebo/model_states', ModelStates, queue_size=30)
-pub1 = rospy.Publisher(f'/{robot}_Name', String, queue_size=35)
-pub2 = rospy.Publisher(f'/{robot}_Pos', Pose, queue_size=30)
-pub3 = rospy.Publisher(f'/{robot}_Vel', Twist, queue_size=25)
+pub = rospy.Publisher('/gazebo/model_states', ModelStates, queue_size=5)
+pub1 = rospy.Publisher(f'/{robot}_Name', String, queue_size=55)
+pub2 = rospy.Publisher(f'/{robot}_Pos', Pose, queue_size=55)
+pub3 = rospy.Publisher(f'/{robot}_Vel', Twist, queue_size=55)
 
 
 def callback(data):

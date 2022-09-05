@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import os
 
-bagname='trial'
+bagname='trial_2'
 robot='robot1'
 
 b = bagreader(f'/home/jazmin/bagfiles/{bagname}.bag') 
@@ -62,8 +62,9 @@ df_list = []
 '''
 df = pd.concat([data1.set_index('Time'), data2.set_index('Time'), data3.set_index('Time')], axis=1, join='inner')
     
-print(df)
+
 path1= '/home/jazmin/MultiRobots/src/atom/Csv'
+print(df)
 df.to_csv(f'{path1}/{robot}_{bagname}.csv', sep=';')
 
 
