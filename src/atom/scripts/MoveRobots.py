@@ -22,7 +22,7 @@ def move_robot(linear_vel, ang_vel):
 
         vel.angular.x=0
         vel.angular.y=0
-        vel.angular.x=ang_vel
+        vel.angular.z=ang_vel
 
         pub.publish(vel)
         rate.sleep()
