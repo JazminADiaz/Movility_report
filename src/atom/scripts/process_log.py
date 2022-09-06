@@ -2,7 +2,7 @@
 import pandas as pd
 import numpy as np
 
-bagname='trial_2'
+bagname='trial2'
 robot='robot1'
 place=[]
 placex=np.array([])
@@ -10,11 +10,14 @@ placey=np.array([])
 r=1.3
 import csv
 flag=False
+s_place='not_yet'
 
-path= '/home/jazmin/MultiRobots/src/atom/Csv'
+path= '/home/jazmin/MultiRobots/src/atom/Csv/og'
 
 
-data= pd.read_csv(f'{path}/{robot}_{bagname}.csv', sep=';')
+
+#data= pd.read_csv(f'{path}/{robot}_{bagname}.csv', sep=';')
+data= pd.read_csv(f'{path}/{robot}_{bagname}_og.csv', sep=',')
 
 
 path1= '/home/jazmin/MultiRobots/src/atom/Csv'
@@ -42,20 +45,52 @@ placex=np.append(placex, -5.3)
 placey=np.append(placey, -13)
 
 for a in range(len(data['Time'])):
-    posx= data.at[a,'position.x']
-    posy= data.at[a,'position.y']
+    posx= data.at[a,'PosX']
+    posy= data.at[a,'PosY']
     timeA= data.at[a,'Time']
+    s_place_saved=s_place
+
 
     for i in range(len(place)):
+
+        
         if (((posx - placex[i])**2) + ((posy-placey[i])**2))<(r**2):
+            
+            
             s_place=place[i]
+            
+
+    if s_place!=s_place_saved:
+        writer.writerow([timeA,robot,s_place])
+        
+
+
+f.close()
+
+'''
+for a in range(len(data['Time'])):
+    posx= data.at[a,'PosX']
+    posy= data.at[a,'PosY']
+    timeA= data.at[a,'Time']
+    s_place_saved=s_place
+    for i in range(len(place)):
+        
+        if (((posx - placex[i])**2) + ((posy-placey[i])**2))<(r**2):
+            
+            s_place=place[i]
+            
             flag=True
         if flag ==False:
             s_place='moving'
             flag=False
-    writer.writerow([timeA,robot,s_place])
+       
+    
+    if s_place!=s_place_saved:
+        writer.writerow([timeA,robot,s_place])
 f.close()
 
+
+'''
 
 
 
