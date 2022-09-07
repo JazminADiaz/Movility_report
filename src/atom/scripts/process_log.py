@@ -7,7 +7,7 @@ robot='robot1'
 place=[]
 placex=np.array([])
 placey=np.array([])
-r=1.3
+r=2.7
 import csv
 flag=False
 s_place='not_yet'
@@ -28,21 +28,32 @@ writer = csv.writer(f)
 writer.writerow(['Time' ,'Robot','Move'])
 
 #### PLACES TO CHECK
+place.append('Mario_Cell')
+placex=np.append(placex, 6.97)
+placey=np.append(placey, -40.47)
+
+
+place.append('Cafe_Palantino')
+placex=np.append(placex, 3.55)
+placey=np.append(placey, -32.63)
+
+place.append('LiliPink')
+placex=np.append(placex, -5.407)
+placey=np.append(placey, -12.86)
+
+place.append('Confamiliar')
+placex=np.append(placex, -12.20)
+placey=np.append(placey, 4.67)
+
+
 place.append('Exito')
-placex=np.append(placex, -21.5)
-placey=np.append(placey, 24.5)
+placex=np.append(placex, -21.15)
+placey=np.append(placey, 23.59)
 
+place.append('Sweet')
+placex=np.append(placex, -28.44)
+placey=np.append(placey, 40.55)
 
-
-place.append('Amorel')
-placex=np.append(placex, -13.3)
-placey=np.append(placey, 5.7)
-
-
-
-place.append('Sebas')
-placex=np.append(placex, -5.3)
-placey=np.append(placey, -13)
 
 for a in range(len(data['Time'])):
     posx= data.at[a,'PosX']

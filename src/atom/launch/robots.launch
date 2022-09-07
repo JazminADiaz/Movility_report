@@ -15,7 +15,7 @@
   <param name="robot_description" command="$(arg urdf_file)" />
       
 <include file="$(find atom)/launch/one_robot.launch" >
-      <arg name="init_pose" value="-x -29.13 -y 40.54 -z 0 -R 0 -P 0 -Y -1.15" />
+      <arg name="init_pose" value="-x 7.526 -y-41.49  -z 0 -R 0 -P 0 -Y 2.009" />
       <arg name="robot_name"  value="robot1" />
       <arg name="n2" value="rob1" />
 </include>
