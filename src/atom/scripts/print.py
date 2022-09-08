@@ -7,20 +7,27 @@ import csv
 from gazebo_msgs.msg import ModelStates
 from geometry_msgs.msg import Twist, Pose, Quaternion, Point, Vector3
 from std_msgs.msg import String
-import time
+import numpy as np
+
 import math 
 
-robot='robot1'
-situation='ideal'
-muestra='1'
+##CAMBIO
+situation='deviation10'
+ruta_prog=True
 
-#bagname=f'{robot}_{situation}_{muestra}'
-bagname='idealR1'
+ruta=10
+
+#IGUAL
+robot=f'robot{ruta}'
+bagname=f'{situation}R{ruta}'
+#deviation1 -> the bus takes deviation from one street has to do a turn 2 blocks awway
+
+
 def callback_1(event):
   global posx, posy, ruta
   Vel=Twist()
   
-  if ruta==1:
+  if ruta==1 and ruta_prog==True:
 
     Vel.linear.x=0.7
     pub.publish(Vel)
@@ -100,17 +107,18 @@ def callback_1(event):
       Vel.angular.z=0.0
       Vel.linear.x=0.7
       pub.publish(Vel)
-      rospy.sleep(10)
+      rospy.sleep(3)
 
-    if (((posx - (-24.65))**2) + ((posy-(32.6))**2))<(radio**2):
+    if (((posx - (-24.56))**2) + ((posy-(32.31))**2))<(radio**2):
       Vel.linear.x=0.0
       Vel.angular.z=0.1
       pub.publish(Vel)
       rospy.sleep(2)
+
       Vel.angular.z=0.0
       Vel.linear.x=0.7
       pub.publish(Vel)
-      rospy.sleep(10)
+      rospy.sleep(2)
 
     if (((posx - (-27.72))**2) + ((posy-(40.19))**2))<(radio**2):
       Vel.linear.x=0.0
@@ -118,104 +126,6 @@ def callback_1(event):
       pub.publish(Vel)
       
 
-      '''
-    #gira un poco a la derecha
-          Vel.angular.z=-0.5
-          Vel.linear.x=0.5
-          pub.publish(Vel)
-          rospy.sleep(5)
-    #gira un poco a la izq
-        
-          Vel.angular.z=0.5
-          pub.publish(Vel)
-          rospy.sleep(5)
-          Vel.angular.z=0
-          pub.publish(Vel)
-          rospy.sleep(1)  
-
-    ##Segunda esquina
-
-        if (((posx - (-4.86))**2) + ((posy-(-14.12))**2))<(radio**2):
-          Vel.linear.x=0.0
-          pub.publish(Vel)
-          rospy.sleep(4)
-          Vel.linear.x=0.5
-          pub.publish(Vel)
-          rospy.sleep(5)
-
-    ##Tercera esquina
-
-        if (((posx - (-13.32))**2) + ((posy-(4.01))**2))<(radio**2):
-          Vel.linear.x=0.0
-          pub.publish(Vel)
-          rospy.sleep(4)
-
-
-
-    #gira un poco a la izq
-          Vel.linear.x=0.5
-          Vel.angular.z=-0.5
-          pub.publish(Vel)
-          rospy.sleep(5)
-          Vel.angular.z=0
-          pub.publish(Vel)
-          rospy.sleep(1)  
-    #gira un poco a la derecha
-          Vel.angular.z=0.5
-          Vel.linear.x=0.5
-          pub.publish(Vel)
-          rospy.sleep(5)
-
-    ##Cuarta esquina
-
-        if (((posx - (-21.41))**2) + ((posy-(22))**2))<(radio**2):
-          Vel.linear.x=0.0
-          pub.publish(Vel)
-          rospy.sleep(4)
-
-          
-    #gira un poco a la derecha
-          Vel.angular.z=-0.5
-          Vel.linear.x=0.5
-          pub.publish(Vel)
-          rospy.sleep(4)
-    #gira un poco a la izq
-        
-          Vel.angular.z=0.5
-          pub.publish(Vel)
-          rospy.sleep(4)
-          Vel.angular.z=0
-          pub.publish(Vel)
-          rospy.sleep(1)  
-
-    #Mitad de via
-
-
-    #gira un poco a la der
-        
-          Vel.angular.z=-0.5
-          Vel.linear.x=0.5
-          pub.publish(Vel)
-          rospy.sleep(4)
-
-
-
-    #gira un poco a la derecha
-          Vel.angular.z=0.4
-          pub.publish(Vel)
-          rospy.sleep(2)
-
-          Vel.angular.z=0
-          pub.publish(Vel)
-          rospy.sleep(4)  
-
-        else:
-          Vel.linear.x=0.7
-          pub.publish(Vel)
-        
-
-      
-      '''
         
 
 def callback(data):
@@ -223,9 +133,9 @@ def callback(data):
   Time=rospy.get_time()
 
   #Time=rospy.get_rostime()
-  r=r+1
+  r=r+2
   for a in  range(len(data.name)):
-    if data.name[a]== 'robot1':
+    if data.name[a]== f'robot1':
       name=data.name[a]
       position=data.pose[a]
       velocity=data.twist[a]
@@ -237,12 +147,11 @@ def callback(data):
   if r%100==0:
     speed=math.sqrt((velx**2)+(vely**2))    
     row=[Time, name, posx, posy, speed ]
-
     writer.writerow(row)
   
 ### CREATING THE CSV
-path1= '/home/jazmin/MultiRobots/src/atom/Csv/og'
-f = open(f'{path1}/{bagname}_og.csv', 'w', encoding='UTF8')
+path= '/home/jazmin/MultiRobots/src/atom/Csv'
+f = open(f'{path}/{bagname}.csv', 'w', encoding='UTF8')
 writer = csv.writer(f)
 writer.writerow(['Time' ,'Robot','PosX','PosY','Speed'])
 
@@ -250,13 +159,13 @@ writer.writerow(['Time' ,'Robot','PosX','PosY','Speed'])
 
 
 r=0 #rate to save the log
-ruta=1
 radio=0.3
 posx=0
 posy=0
 vel_lx=0
 vel_lz=0
 
+speed_s=np.array([])
 
 if __name__ == '__main__':
     try:
