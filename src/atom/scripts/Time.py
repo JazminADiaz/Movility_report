@@ -19,8 +19,7 @@ def import_csv(file_path):
         time_log.append(str(hi)+':'+str(mi)+':'+str(int(round(s))))
 
     log['Time'] = time_log
-    path= '/home/jazmin/MultiRobots/src/atom/Csv'
-    log.to_csv(f'{path}/{bagname}_pros.csv', sep=',',index=False)
+    log.to_csv('/home/jazmin/MultiRobots/src/atom/Csv/New/normal_t.csv', sep=',',index=False)
 
 
 
@@ -29,16 +28,5 @@ def import_csv(file_path):
 
 if __name__== "__main__":
 
-    ##CAMBIO
-    situation='ideal'
-    ruta_prog=True
 
-    ruta=1
-
-    #IGUAL
-    robot=f'robot{ruta}'
-    bagname=f'{situation}R{ruta}'
-
-    path= '/home/jazmin/MultiRobots/src/atom/Csv'
-
-    import_csv(f'{path}/{bagname}_pros.csv')
+    import_csv('/home/jazmin/MultiRobots/src/atom/Csv/New/combined_csv.csv')
