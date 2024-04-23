@@ -63,3 +63,9 @@ rosbag record -O subset4  /robot1_Vel /robot1_Pos /robot1_Name
 '''
 
 Then you can use the scripts available in the Scripts folder to analize all the files.
+
+# Results
+You can check the robot moving in this link https://youtu.be/iiXPUbDyDKk
+
+And the results of the analysis in this link: http://dx.doi.org/10.13140/RG.2.2.36732.96640
+
