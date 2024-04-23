@@ -100,7 +100,7 @@ for f in all_filenames:
 
     act_diagnostics = duration_diagnostics.diagnose_from_notexisting_activities(deviation_model1, unwanted_activities)
     for act in act_diagnostics:
-        print(act, act_diagnostics[act])
+        print(f'para {f}:{act, act_diagnostics[act]}')
                                 
 
 
